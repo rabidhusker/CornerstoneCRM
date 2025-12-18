@@ -1,0 +1,13 @@
+export { DealCard, DealCardCompact } from "./deal-card";
+export { StageColumn } from "./stage-column";
+export { PipelineBoard, PipelineBoardHeader } from "./pipeline-board";
+export { DealDetailSheet } from "./deal-detail-sheet";
+export { DealOverview } from "./deal-overview";
+export { DealForm } from "./deal-form";
+export { CloseDealDialog } from "./close-deal-dialog";
+export { DealActivityTab } from "./deal-activity-tab";
+export { PipelineSettingsForm } from "./pipeline-settings-form";
+export { DealsListView } from "./deals-list-view";
+export { PipelineFilters } from "./pipeline-filters";
+export { PipelineSummaryCards, StageBreakdown } from "./pipeline-summary-cards";
+export { DealForecast, ForecastTable } from "./deal-forecast";
