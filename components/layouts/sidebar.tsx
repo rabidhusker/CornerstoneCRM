@@ -71,7 +71,7 @@ const navSections: NavSection[] = [
       { label: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
       { label: "Automation", href: "/dashboard/automation", icon: Workflow },
       { label: "Forms", href: "/dashboard/forms", icon: FileText },
-      { label: "Landing Pages", href: "/dashboard/landing-pages", icon: Globe },
+      { label: "Landing Pages", href: "/dashboard/pages", icon: Globe },
     ],
   },
   {

@@ -1326,6 +1326,539 @@ export interface Database {
           }
         ];
       };
+      crm_forms: {
+        Row: {
+          id: string;
+          workspace_id: string;
+          created_by: string;
+          name: string;
+          description: string | null;
+          status: "draft" | "active" | "inactive";
+          config: Json;
+          settings: Json;
+          styles: Json;
+          submissions_count: number;
+          views_count: number;
+          conversion_rate: number;
+          last_submission_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          workspace_id: string;
+          created_by: string;
+          name: string;
+          description?: string | null;
+          status?: "draft" | "active" | "inactive";
+          config?: Json;
+          settings?: Json;
+          styles?: Json;
+          submissions_count?: number;
+          views_count?: number;
+          conversion_rate?: number;
+          last_submission_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          workspace_id?: string;
+          created_by?: string;
+          name?: string;
+          description?: string | null;
+          status?: "draft" | "active" | "inactive";
+          config?: Json;
+          settings?: Json;
+          styles?: Json;
+          submissions_count?: number;
+          views_count?: number;
+          conversion_rate?: number;
+          last_submission_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "crm_forms_workspace_id_fkey";
+            columns: ["workspace_id"];
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_forms_created_by_fkey";
+            columns: ["created_by"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      crm_form_submissions: {
+        Row: {
+          id: string;
+          form_id: string;
+          contact_id: string | null;
+          data: Json;
+          metadata: Json;
+          ip_address: string | null;
+          user_agent: string | null;
+          referrer: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          form_id: string;
+          contact_id?: string | null;
+          data: Json;
+          metadata?: Json;
+          ip_address?: string | null;
+          user_agent?: string | null;
+          referrer?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          form_id?: string;
+          contact_id?: string | null;
+          data?: Json;
+          metadata?: Json;
+          ip_address?: string | null;
+          user_agent?: string | null;
+          referrer?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "crm_form_submissions_form_id_fkey";
+            columns: ["form_id"];
+            referencedRelation: "crm_forms";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_form_submissions_contact_id_fkey";
+            columns: ["contact_id"];
+            referencedRelation: "crm_contacts";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      crm_landing_pages: {
+        Row: {
+          id: string;
+          workspace_id: string;
+          created_by: string;
+          title: string;
+          slug: string;
+          description: string | null;
+          status: "draft" | "published" | "archived";
+          config: Json;
+          settings: Json;
+          views_count: number;
+          conversions_count: number;
+          conversion_rate: number;
+          published_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          workspace_id: string;
+          created_by: string;
+          title: string;
+          slug: string;
+          description?: string | null;
+          status?: "draft" | "published" | "archived";
+          config?: Json;
+          settings?: Json;
+          views_count?: number;
+          conversions_count?: number;
+          conversion_rate?: number;
+          published_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          workspace_id?: string;
+          created_by?: string;
+          title?: string;
+          slug?: string;
+          description?: string | null;
+          status?: "draft" | "published" | "archived";
+          config?: Json;
+          settings?: Json;
+          views_count?: number;
+          conversions_count?: number;
+          conversion_rate?: number;
+          published_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "crm_landing_pages_workspace_id_fkey";
+            columns: ["workspace_id"];
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_landing_pages_created_by_fkey";
+            columns: ["created_by"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      crm_conversations: {
+        Row: {
+          id: string;
+          workspace_id: string;
+          contact_id: string;
+          assigned_to: string | null;
+          channel: "email" | "sms";
+          status: "open" | "closed" | "snoozed";
+          subject: string | null;
+          last_message_at: string | null;
+          last_message_preview: string | null;
+          unread_count: number;
+          snoozed_until: string | null;
+          metadata: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          workspace_id: string;
+          contact_id: string;
+          assigned_to?: string | null;
+          channel: "email" | "sms";
+          status?: "open" | "closed" | "snoozed";
+          subject?: string | null;
+          last_message_at?: string | null;
+          last_message_preview?: string | null;
+          unread_count?: number;
+          snoozed_until?: string | null;
+          metadata?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          workspace_id?: string;
+          contact_id?: string;
+          assigned_to?: string | null;
+          channel?: "email" | "sms";
+          status?: "open" | "closed" | "snoozed";
+          subject?: string | null;
+          last_message_at?: string | null;
+          last_message_preview?: string | null;
+          unread_count?: number;
+          snoozed_until?: string | null;
+          metadata?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "crm_conversations_workspace_id_fkey";
+            columns: ["workspace_id"];
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_conversations_contact_id_fkey";
+            columns: ["contact_id"];
+            referencedRelation: "crm_contacts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_conversations_assigned_to_fkey";
+            columns: ["assigned_to"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      crm_conversation_messages: {
+        Row: {
+          id: string;
+          conversation_id: string;
+          sender_id: string | null;
+          direction: "inbound" | "outbound";
+          channel: "email" | "sms";
+          subject: string | null;
+          content: string;
+          content_html: string | null;
+          status: "pending" | "sent" | "delivered" | "failed" | "read";
+          external_id: string | null;
+          attachments: Json;
+          metadata: Json;
+          sent_at: string | null;
+          delivered_at: string | null;
+          read_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          conversation_id: string;
+          sender_id?: string | null;
+          direction: "inbound" | "outbound";
+          channel: "email" | "sms";
+          subject?: string | null;
+          content: string;
+          content_html?: string | null;
+          status?: "pending" | "sent" | "delivered" | "failed" | "read";
+          external_id?: string | null;
+          attachments?: Json;
+          metadata?: Json;
+          sent_at?: string | null;
+          delivered_at?: string | null;
+          read_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          conversation_id?: string;
+          sender_id?: string | null;
+          direction?: "inbound" | "outbound";
+          channel?: "email" | "sms";
+          subject?: string | null;
+          content?: string;
+          content_html?: string | null;
+          status?: "pending" | "sent" | "delivered" | "failed" | "read";
+          external_id?: string | null;
+          attachments?: Json;
+          metadata?: Json;
+          sent_at?: string | null;
+          delivered_at?: string | null;
+          read_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "crm_conversation_messages_conversation_id_fkey";
+            columns: ["conversation_id"];
+            referencedRelation: "crm_conversations";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_conversation_messages_sender_id_fkey";
+            columns: ["sender_id"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      crm_canned_responses: {
+        Row: {
+          id: string;
+          workspace_id: string;
+          created_by: string;
+          name: string;
+          shortcut: string | null;
+          content: string;
+          category: string | null;
+          is_shared: boolean;
+          usage_count: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          workspace_id: string;
+          created_by: string;
+          name: string;
+          shortcut?: string | null;
+          content: string;
+          category?: string | null;
+          is_shared?: boolean;
+          usage_count?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          workspace_id?: string;
+          created_by?: string;
+          name?: string;
+          shortcut?: string | null;
+          content?: string;
+          category?: string | null;
+          is_shared?: boolean;
+          usage_count?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "crm_canned_responses_workspace_id_fkey";
+            columns: ["workspace_id"];
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_canned_responses_created_by_fkey";
+            columns: ["created_by"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      crm_email_queue: {
+        Row: {
+          id: string;
+          workspace_id: string;
+          conversation_id: string | null;
+          contact_id: string | null;
+          to_address: string;
+          from_address: string;
+          reply_to: string | null;
+          subject: string;
+          html_content: string | null;
+          text_content: string | null;
+          attachments: Json;
+          status: "pending" | "processing" | "sent" | "failed";
+          attempts: number;
+          max_attempts: number;
+          error: string | null;
+          external_id: string | null;
+          scheduled_at: string | null;
+          sent_at: string | null;
+          metadata: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          workspace_id: string;
+          conversation_id?: string | null;
+          contact_id?: string | null;
+          to_address: string;
+          from_address: string;
+          reply_to?: string | null;
+          subject: string;
+          html_content?: string | null;
+          text_content?: string | null;
+          attachments?: Json;
+          status?: "pending" | "processing" | "sent" | "failed";
+          attempts?: number;
+          max_attempts?: number;
+          error?: string | null;
+          external_id?: string | null;
+          scheduled_at?: string | null;
+          sent_at?: string | null;
+          metadata?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          workspace_id?: string;
+          conversation_id?: string | null;
+          contact_id?: string | null;
+          to_address?: string;
+          from_address?: string;
+          reply_to?: string | null;
+          subject?: string;
+          html_content?: string | null;
+          text_content?: string | null;
+          attachments?: Json;
+          status?: "pending" | "processing" | "sent" | "failed";
+          attempts?: number;
+          max_attempts?: number;
+          error?: string | null;
+          external_id?: string | null;
+          scheduled_at?: string | null;
+          sent_at?: string | null;
+          metadata?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "crm_email_queue_workspace_id_fkey";
+            columns: ["workspace_id"];
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_email_queue_conversation_id_fkey";
+            columns: ["conversation_id"];
+            referencedRelation: "crm_conversations";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_email_queue_contact_id_fkey";
+            columns: ["contact_id"];
+            referencedRelation: "crm_contacts";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      crm_booking_pages: {
+        Row: {
+          id: string;
+          workspace_id: string;
+          user_id: string;
+          slug: string;
+          name: string;
+          description: string | null;
+          is_active: boolean;
+          branding: Json;
+          availability: Json;
+          settings: Json;
+          appointment_types: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          workspace_id: string;
+          user_id: string;
+          slug: string;
+          name: string;
+          description?: string | null;
+          is_active?: boolean;
+          branding?: Json;
+          availability?: Json;
+          settings?: Json;
+          appointment_types?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          workspace_id?: string;
+          user_id?: string;
+          slug?: string;
+          name?: string;
+          description?: string | null;
+          is_active?: boolean;
+          branding?: Json;
+          availability?: Json;
+          settings?: Json;
+          appointment_types?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "crm_booking_pages_workspace_id_fkey";
+            columns: ["workspace_id"];
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "crm_booking_pages_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
     };
     Views: {
       crm_contact_summary: {
@@ -1400,6 +1933,12 @@ export interface Database {
       crm_message_direction: "inbound" | "outbound";
       crm_message_status: "pending" | "sent" | "delivered" | "failed" | "opened" | "clicked";
       crm_appointment_status: "scheduled" | "completed" | "cancelled" | "no_show";
+      crm_form_status: "draft" | "active" | "inactive";
+      crm_page_status: "draft" | "published" | "archived";
+      crm_conversation_channel: "email" | "sms";
+      crm_conversation_status: "open" | "closed" | "snoozed";
+      crm_conversation_message_status: "pending" | "sent" | "delivered" | "failed" | "read";
+      crm_email_queue_status: "pending" | "processing" | "sent" | "failed";
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -1440,6 +1979,14 @@ export type CrmNote = Tables<"crm_notes">;
 export type CrmDocument = Tables<"crm_documents">;
 export type CrmAuditLog = Tables<"crm_audit_logs">;
 export type CrmTag = Tables<"crm_tags">;
+export type CrmForm = Tables<"crm_forms">;
+export type CrmFormSubmission = Tables<"crm_form_submissions">;
+export type CrmLandingPage = Tables<"crm_landing_pages">;
+export type CrmConversation = Tables<"crm_conversations">;
+export type CrmConversationMessage = Tables<"crm_conversation_messages">;
+export type CrmCannedResponse = Tables<"crm_canned_responses">;
+export type CrmEmailQueue = Tables<"crm_email_queue">;
+export type CrmBookingPage = Tables<"crm_booking_pages">;
 
 // View type aliases
 export type CrmContactSummary = Views<"crm_contact_summary">;
