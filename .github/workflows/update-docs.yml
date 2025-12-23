@@ -1,0 +1,33 @@
+name: Update Documentation
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Update Timestamp in PROJECT_RELATIONSHIPS.md
+        run: |
+          if [ -f PROJECT_RELATIONSHIPS.md ]; then
+            sed -i "s/Last Updated:.*/Last Updated: $(date -u)/" PROJECT_RELATIONSHIPS.md
+            
+            # Configure git
+            git config --global user.name "GitHub Action"
+            git config --global user.email "action@github.com"
+            
+            # Commit and push if changed
+            git add PROJECT_RELATIONSHIPS.md
+            git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-update timestamp" && git push)
+          else
+            echo "PROJECT_RELATIONSHIPS.md not found, skipping update."
+          fi
