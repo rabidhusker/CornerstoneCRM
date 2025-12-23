@@ -2,6 +2,28 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { Database } from "@/types/database";
 
+/**
+ * Filter out corrupted cookies that contain full JSON auth responses
+ * This prevents the "Cannot create property 'user' on string" error
+ */
+function filterCorruptedCookies(cookies: { name: string; value: string }[]): { name: string; value: string }[] {
+  return cookies.filter(cookie => {
+    const value = cookie.value?.trim() || '';
+    
+    // Filter out cookies that look like full JSON auth responses
+    if ((value.startsWith('{') || value.startsWith('[')) && value.length > 30) {
+      return false;
+    }
+    
+    // Filter out cookies with auth response patterns
+    if (value.includes('"access_token"') || value.includes('"refresh_token"')) {
+      return false;
+    }
+    
+    return true;
+  });
+}
+
 export async function createClient() {
   const cookieStore = await cookies();
 
@@ -11,7 +33,8 @@ export async function createClient() {
     {
       cookies: {
         getAll() {
-          return cookieStore.getAll();
+          // Filter out corrupted cookies that contain full JSON auth responses
+          return filterCorruptedCookies(cookieStore.getAll());
         },
         setAll(cookiesToSet) {
           try {
