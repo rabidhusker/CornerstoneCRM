@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import DOMPurify from "dompurify";
 import { Monitor, Tablet, Smartphone, RefreshCw } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -462,9 +463,9 @@ export function FormPreview({ fields, settings, styles }: FormPreviewProps) {
             )}
           </div>
 
-          {/* Custom CSS */}
+          {/* Custom CSS - sanitized to prevent XSS */}
           {styles.customCss && (
-            <style dangerouslySetInnerHTML={{ __html: styles.customCss }} />
+            <style dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(styles.customCss, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] }) }} />
           )}
         </div>
       </div>

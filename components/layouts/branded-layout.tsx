@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import DOMPurify from "dompurify";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -30,11 +31,13 @@ export function BrandedLayout({
   // Generate CSS variables
   const cssVariables = useMemo(() => brandingToCssVariables(branding), [branding]);
 
-  // Combine with custom CSS
+  // Combine with custom CSS - sanitize to prevent XSS
   const fullStyles = useMemo(() => {
     let styles = cssVariables;
     if (branding.custom_css) {
-      styles += "\n" + branding.custom_css;
+      // Sanitize custom CSS to prevent XSS attacks
+      const sanitizedCss = DOMPurify.sanitize(branding.custom_css, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+      styles += "\n" + sanitizedCss;
     }
     return styles;
   }, [cssVariables, branding.custom_css]);

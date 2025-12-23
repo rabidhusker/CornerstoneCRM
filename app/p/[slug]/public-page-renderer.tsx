@@ -3,6 +3,7 @@
 import * as React from "react";
 import Script from "next/script";
 import Link from "next/link";
+import DOMPurify from "dompurify";
 import {
   HeroBlockDisplay,
   TextBlockDisplay,
@@ -76,9 +77,9 @@ export function PublicPageRenderer({ blocks, settings, branding }: PublicPageRen
         </Script>
       )}
 
-      {/* Custom CSS from branding */}
+      {/* Custom CSS from branding - sanitized to prevent XSS */}
       {branding?.custom_css && (
-        <style dangerouslySetInnerHTML={{ __html: branding.custom_css }} />
+        <style dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(branding.custom_css, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] }) }} />
       )}
 
       {/* Page Content */}

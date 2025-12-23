@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import DOMPurify from "dompurify";
 import {
   Monitor,
   Smartphone,
@@ -151,7 +152,7 @@ export function EmailPreview({
                 theme === "dark" && "prose-invert"
               )}
               style={{ whiteSpace: "pre-wrap" }}
-              dangerouslySetInnerHTML={{ __html: personalizedContent }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(personalizedContent) }}
             />
           ) : (
             <p

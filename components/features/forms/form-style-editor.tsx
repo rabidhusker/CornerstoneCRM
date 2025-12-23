@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import DOMPurify from "dompurify";
 import { RotateCcw } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
@@ -499,8 +500,9 @@ export function FormStyleEditor({
             )}
           </div>
 
+          {/* Custom CSS - sanitized to prevent XSS */}
           {styles.customCss && (
-            <style dangerouslySetInnerHTML={{ __html: styles.customCss }} />
+            <style dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(styles.customCss, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] }) }} />
           )}
         </div>
       </div>

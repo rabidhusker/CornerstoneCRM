@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import DOMPurify from "dompurify";
 import { format } from "date-fns";
 import {
   Mail,
@@ -269,7 +270,7 @@ function MessageBubble({ message }: MessageBubbleProps) {
           {message.content_html ? (
             <div
               className="text-sm prose prose-sm dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: message.content_html }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message.content_html) }}
             />
           ) : (
             <p className="text-sm whitespace-pre-wrap">{message.content}</p>
