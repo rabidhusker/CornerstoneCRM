@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cinzel, Lato } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+// Primary Font: Cinzel - classical Roman inscriptions, Christian architecture
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-cinzel',
+  weight: ['400', '500', '600', '700', '800', '900'],
+});
+
+// Secondary Font: Lato - clean, modern sans-serif for body text
+const lato = Lato({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-lato',
+  weight: ['300', '400', '700', '900'],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${lato.variable} ${cinzel.variable} font-sans antialiased`}>
         {children}
         <Toaster />
       </body>

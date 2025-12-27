@@ -12,45 +12,72 @@ const config: Config = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+  			// Brand Colors
+  			navy: {
+  				50: '#e6eaf0',
+  				100: '#c0c9d9',
+  				200: '#96a5be',
+  				300: '#6c81a3',
+  				400: '#4d668f',
+  				500: '#2E3A59', // Deep Slate - body text
+  				600: '#1a2844',
+  				700: '#152238',
+  				800: '#0f1a2d',
+  				900: '#0C2340', // Navy Blue - primary
+  				950: '#081829',
+  			},
+  			gold: {
+  				50: '#faf8f1',
+  				100: '#f5f0dc',
+  				200: '#ebe0b8',
+  				300: '#dece8f',
+  				400: '#ccb866',
+  				500: '#AE9142', // Brand Gold
+  				600: '#917736',
+  				700: '#735e2b',
+  				800: '#5a4922',
+  				900: '#47391a',
+  				950: '#2a2110',
+  			},
   			primary: {
-  				'50': '#E8EDF3',
-  				'100': '#D1DBE7',
-  				'200': '#A3B7CF',
-  				'300': '#7593B7',
-  				'400': '#476F9F',
-  				'500': '#1E3A5F',
-  				'600': '#182E4C',
-  				'700': '#122339',
-  				'800': '#0C1726',
-  				'900': '#060C13',
+  				'50': '#e6eaf0',
+  				'100': '#c0c9d9',
+  				'200': '#96a5be',
+  				'300': '#6c81a3',
+  				'400': '#4d668f',
+  				'500': '#2E3A59',
+  				'600': '#1a2844',
+  				'700': '#152238',
+  				'800': '#0f1a2d',
+  				'900': '#0C2340',
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
-  				'50': '#EBF0F6',
-  				'100': '#D7E1ED',
-  				'200': '#AFC3DB',
-  				'300': '#87A5C9',
-  				'400': '#5F87B7',
-  				'500': '#2E5A8F',
-  				'600': '#254872',
-  				'700': '#1C3656',
-  				'800': '#132439',
-  				'900': '#0A121D',
+  				'50': '#faf8f1',
+  				'100': '#f5f0dc',
+  				'200': '#ebe0b8',
+  				'300': '#dece8f',
+  				'400': '#ccb866',
+  				'500': '#AE9142',
+  				'600': '#917736',
+  				'700': '#735e2b',
+  				'800': '#5a4922',
+  				'900': '#47391a',
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
   			accent: {
-  				'50': '#ECFDF5',
-  				'100': '#D1FAE5',
-  				'200': '#A7F3D0',
-  				'300': '#6EE7B7',
-  				'400': '#34D399',
-  				'500': '#10B981',
-  				'600': '#059669',
-  				'700': '#047857',
-  				'800': '#065F46',
-  				'900': '#064E3B',
+  				'50': '#faf8f1',
+  				'100': '#f5f0dc',
+  				'200': '#ebe0b8',
+  				'300': '#dece8f',
+  				'400': '#ccb866',
+  				'500': '#AE9142',
+  				'600': '#917736',
+  				'700': '#735e2b',
+  				'800': '#5a4922',
+  				'900': '#47391a',
   				DEFAULT: 'hsl(var(--accent))',
   				foreground: 'hsl(var(--accent-foreground))'
   			},
@@ -93,6 +120,19 @@ const config: Config = {
   				'900': '#111827',
   				DEFAULT: '#6B7280'
   			},
+  			// Neutral grays/slate
+  			slate: {
+  				50: '#f8f9fa',
+  				100: '#E5E5E5', // Light Gray - secondary backgrounds
+  				200: '#d1d5db',
+  				300: '#9ca3af',
+  				400: '#6b7280',
+  				500: '#2E3A59', // Deep Slate
+  				600: '#1a2844',
+  				700: '#152238',
+  				800: '#0f1a2d',
+  				900: '#0C2340',
+  			},
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -121,11 +161,12 @@ const config: Config = {
   			}
   		},
   		fontFamily: {
-  			sans: [
-  				'Inter',
-  				'system-ui',
-  				'sans-serif'
-  			]
+  			// Primary heading font - Cinzel (classical Roman, Christian architecture)
+  			heading: ['var(--font-cinzel)', 'Georgia', 'serif'],
+  			cinzel: ['var(--font-cinzel)', 'Georgia', 'serif'],
+  			// Body text font - Lato (clean, modern sans-serif)
+  			sans: ['var(--font-lato)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+  			body: ['var(--font-lato)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
   		},
   		fontSize: {
   			'2xs': [
